@@ -1,16 +1,17 @@
 #define VGA_MEMORY 0xb8000
-#define FILL 0x0f
+#define VGA_LEN 25*80
+#define FILL 0x9f
 
 int
 kmain ()
 {
-  char msg[] = "sapatinhos v0.64";
+  char msg[] = "sapatinhos ";
   char* vga = (char *)VGA_MEMORY;
   int i = -1;
  
-  while (msg[++i])
+  while (++i != VGA_LEN)
     {
-      vga[2*i] = msg[i];
+      vga[2*i] = msg[i % 11];
       vga[2*i + 1] = FILL; 
     }
     
